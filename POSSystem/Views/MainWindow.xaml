@@ -1,0 +1,90 @@
+<Window x:Class="POSSystem.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="POS System"
+        Height="780" Width="1280"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        MinHeight="600" MinWidth="1000"
+        Background="{StaticResource BackgroundBrush}">
+
+    <Window.Resources>
+        <Style x:Key="NavButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#D1D5DB"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource SidebarHoverBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NavButtonActive" TargetType="Button" BasedOn="{StaticResource NavButton}">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <Border Grid.Column="0" Background="{StaticResource SidebarBrush}">
+            <DockPanel>
+                <!-- Logo -->
+                <Border DockPanel.Dock="Top" Padding="20,24" BorderThickness="0,0,0,1" BorderBrush="#374151">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🛒" FontSize="22"/>
+                        <TextBlock Text="POS System" FontSize="18" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- User info & logout (bottom) -->
+                <Border DockPanel.Dock="Bottom" Padding="16,16" BorderThickness="0,1,0,0" BorderBrush="#374151">
+                    <StackPanel>
+                        <TextBlock x:Name="UserNameText" Text="" FontSize="14" FontWeight="SemiBold" Foreground="White"/>
+                        <TextBlock x:Name="UserRoleText" Text="" FontSize="12" Foreground="#9CA3AF" Margin="0,2,0,12"/>
+                        <Button Content="Logout" Style="{StaticResource DangerButton}" Click="Logout_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Navigation -->
+                <StackPanel x:Name="NavPanel" Margin="0,12,0,0">
+                    <Button x:Name="NavCheckout"  Style="{StaticResource NavButtonActive}" Click="Nav_Click" Tag="Checkout">
+                        <TextBlock>🧾  Checkout</TextBlock>
+                    </Button>
+                    <Button x:Name="NavInventory" Style="{StaticResource NavButton}"       Click="Nav_Click" Tag="Inventory">
+                        <TextBlock>📦  Inventory</TextBlock>
+                    </Button>
+                    <Button x:Name="NavReports"   Style="{StaticResource NavButton}"       Click="Nav_Click" Tag="Reports">
+                        <TextBlock>📊  Reports</TextBlock>
+                    </Button>
+                    <Button x:Name="NavUsers"     Style="{StaticResource NavButton}"       Click="Nav_Click" Tag="Users">
+                        <TextBlock>👥  Users</TextBlock>
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- Content area -->
+        <ContentControl Grid.Column="1" x:Name="ContentArea" Margin="0"/>
+    </Grid>
+</Window>
