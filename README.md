@@ -4,7 +4,7 @@ A complete, local-only Point of Sale (POS) desktop application built with **.NET
 
 ---
 
-## ✨ Features.
+## ✨ Features
 
 | Module | What it does |
 |---|---|
