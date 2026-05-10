@@ -26,7 +26,7 @@ A complete, local-only Point of Sale (POS) desktop application built with **.NET
 | `cashier1` | `cashier123` | Cashier |
 | `cashier2` | `cashier123` | Cashier |
 
-The database also seeds 10 sample products on first run so reports and inventory aren't empty
+The database also seeds 10 sample products on first run so reports and inventory aren't empty.
 
 ---
 
