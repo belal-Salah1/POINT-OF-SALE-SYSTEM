@@ -2,7 +2,7 @@
 
 A complete, local-only Point of Sale (POS) desktop application built with **.NET 8**, **WPF**, **C#**, and **SQLite**. Runs entirely on a single Windows machine — no server, no internet required.
 
----
+--
 
 ## ✨ Features
 
